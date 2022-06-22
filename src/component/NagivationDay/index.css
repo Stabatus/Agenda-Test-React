@@ -1,0 +1,30 @@
+.day{
+  cursor: pointer;
+}
+
+.day>:first-child,
+.day>:nth-child(3){
+  font-size: 0.75rem;
+}
+
+.day>span:nth-child(2){
+  display: block;
+  width: 2.25rem;
+  aspect-ratio: 1/1;
+  text-align: center;
+  line-height: 2.25rem;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+.day>span:nth-child(3)::first-letter{
+  text-transform: uppercase;
+}
+
+.day--today>span:nth-child(2){
+  border-radius: 100vmax;
+  background-color: hsl(19,100%,50%);
+  color:hsl(19,100%,90%);
+  font-weight: 700;
+}
+

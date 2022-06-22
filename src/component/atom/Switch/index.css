@@ -1,0 +1,39 @@
+:root{
+  --width-switch:2.5rem;
+  --height-switch:1.25rem;
+  --padding:0.25rem;
+  --size-round : calc(var(--height-switch) - (var(--padding) * 2));
+}
+
+.switch{
+  background-color: hsl(19, 30%, 50%);
+  height: var(--height-switch);
+  width: var(--width-switch);
+  border-radius: 100vmax;
+  padding: var(--padding);
+  margin :0;
+  cursor: pointer;
+  position: relative;
+}
+
+.switch:before{
+  content: '';
+  display: block;
+  height: var(--size-round);
+  aspect-ratio: 1/1;
+  border-radius: 100vmax;
+  background-color: hsl(0, 15%, 20%);
+  position: absolute;
+  top: var(--padding);
+  left: var(--padding);
+  transition: 0.3s all ease-out;
+}
+
+input:checked + .switch{
+  background-color: hsl(19, 100%, 50%);
+}
+
+input:checked + .switch::before{
+  top: var(--padding);
+  left: calc(var(--width-switch) - var(--padding) - var(--size-round));
+}

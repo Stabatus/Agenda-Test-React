@@ -1,0 +1,16 @@
+:root{
+  --border-hours: 1px solid hsl(19,30%,50%);
+}
+
+.hour{
+  border-bottom: var(--border-hours);
+}
+
+.hour:first-child{
+  border-top: var(--border-hours);
+}
+
+.periode{
+  display: grid;
+  grid-auto-rows: 1fr;
+}
