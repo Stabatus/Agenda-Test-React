@@ -7,7 +7,6 @@ function App() {
   
   const [AgendaDate, setAgendaDate] = useState(new Date());
 
-
   return (
     <>
       <h1 className="px-4 py-2">
