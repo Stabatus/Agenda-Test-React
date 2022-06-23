@@ -4,9 +4,11 @@ import './index.css';
 
 export const Periode = () => {
 
+  /** Génération d'un liste d'heure interactif de l'agenda */
   const PeriodeTemplate = () => {
     const arrayHour:JSX.Element[] = [];
 
+    /** Boucle pour générer les différentes row de l'agenda */
     for(let i:number = 0; i < 24 ;i++){
       const hour = i > 9 ? i.toString() : `0${i}`;
 

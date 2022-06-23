@@ -23,17 +23,20 @@ interface DateStringProps {
     secondes : string;
 }
 
+type separatorDate = '/' | '-';
+
+/**
+ * @class
+ * @classdesc Conversion d'une date en string, ou objet, en une chaine charactère, 
+ * selon le format disponible par la class
+ * @constructor Transforme une chaine de caractère ou un objet date en un objet
+ * pour créer le format de date disponible
+ * @param { Date | string } 
+ */
 export class DateTransform {
      
     private _dateString : DateStringProps;
 
-    /**
-     * Conversion d'une date en string ou objet en une chaine charactère, 
-     * selon le format demandé
-     * @param {ObjectDate | string} dateObj 
-     * @param {FORMAT_DATE} format 
-     * @returns {string} Date demandé
-     */
     constructor(dateObj: Date | string){
         if(typeof dateObj === 'string'){
             dateObj = new Date(dateObj);
@@ -50,71 +53,82 @@ export class DateTransform {
 
     }
 
-    
     /**
-     * @param {ObjectDate} param0 
-     * @returns {'HH:MM:SS'} 
+     * @returns {string} hh:mm:ss
      */
-     public static HOURS_MIN_SEC = () => {
-        const {hours, minutes, secondes} = this._dateString;
+    public HMS = () => {
+        const { hours, minutes, secondes } = this._dateString;
         return `${hours}:${minutes}:${secondes}`;
     }
+    
     /**
-     * @param {ObjectDate} param0 
-     * @returns {'YYYY-MM-DD HH:MM:SS'} 
+     * @param {'/' | '-'} separatorDate séparateur de date ( / | -)
+     * @default {'/'}
+     * @returns {string} yy/MM/dd hh:mm:ss
      */
-    public static YEAR_MONTH_DAY__HOURS_MIN_SEC = () => {
-        
-        return `${year}-${month}-${day} ${hours}:${minutes}:${secondes}`;
+    public YMDHMS = (separatorDate:separatorDate = '/') => {
+        const { year, month, day, hours, minutes, secondes } = this._dateString;
+        return `${year}${separatorDate}${month}${separatorDate}${day} ${hours}:${minutes}:${secondes}`;
     }
+    
     /**
-     * @param {ObjectDate} param0 
-     * @returns {'DD-MM-YYYY HH:MM:SS'} 
+     * @param {'/' | '-'} separatorDate séparateur de date ( / | -)
+     * @default {'/'}
+     * @returns {string} dd/MM/yy hh:mm:ss
      */
-    public static DAY_MONTH_YEAR__HOURS_MIN_SEC  = () => {
-        
-        return `${day}-${month}-${year} ${hours}:${minutes}:${secondes}`;
+    public DMYHMS  = (separatorDate:separatorDate = '/') => {
+        const { year, month, day, hours, minutes, secondes } = this._dateString;        
+        return `${day}${separatorDate}${month}${separatorDate}${year} ${hours}:${minutes}:${secondes}`;
     }
+    
     /**
-     * @param {ObjectDate} param0 
-     * @returns {'YYYY-MM-DD'} 
+     * @param {'/' | '-'} separatorDate séparateur de date ( / | -)
+     * @default {'/'}
+     * @returns {string} yy/MM/dd
      */
-    public static YEAR_MONTH_DAY = () => {
+    public YMD = (separatorDate:separatorDate = '/') => {
+        const { year, month, day } = this._dateString;  
         
-        return `${year}-${month}-${day}`;
+        return `${year}${separatorDate}${month}${separatorDate}${day}`;
     }
+    
     /**
-     * @param {ObjectDate} param0 
-     * @returns {'DD-MM-YYYY'} 
+     * @param {'/' | '-'} separatorDate séparateur de date ( / | -)
+     * @default {'/'}
+     * @returns {string} dd/MM/yy
      */
-    public static DAY_MONTH_YEAR = () => {
+    public DMY = (separatorDate:separatorDate = '/') => {
+        const { year, month, day } = this._dateString;  
         
-        return `${day}-${month}-${year}`;
+        return `${day}${separatorDate}${month}${separatorDate}${year}`;
     }
+    
     /**
-     * @param {ObjectDate} param0 
-     * @returns {'MM-YYYY'} 
+     * @param {'/' | '-'} separatorDate séparateur de date ( / | -)
+     * @default {'/'}
+     * @returns {string} MM/yy
      */
-    public static MONTH_YEAR = () => {
+    public MY = (separatorDate:separatorDate = '/') => {
+        const { year, month } = this._dateString;  
         
-        return `${month}-${year}`;
+        return `${month}${separatorDate}${year}`;
     }
+
     /**
-     * @param {ObjectDate} param0 
-     * @returns {'MM'} 
+     * @returns {string} MM
      */
-    public static MONTH = () => {
+    public M = () => {
+        const { month } = this._dateString;  
         
         return month;
     }
-            /**
-     * @param {ObjectDate} param0 
-     * @returns {'DD'} 
+    
+    /**
+     * @returns {string} dd
      */
-    public static DAY = () => {
-        
+    public D = () => {
+        const { day } = this._dateString;   
         return day;
     }
-    
 
 }

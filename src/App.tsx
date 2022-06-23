@@ -1,7 +1,7 @@
-import React, { createContext, useState } from "react";
-import { Day } from './component/Day';
-import { NavigationDay } from './component/NagivationDay';
-import { AgendaContext } from "./context/AgendaContext";
+import React, { useState } from "react";
+import { Day } from '@/component/Day';
+import { NavigationDay } from '@/component/NagivationDay';
+import { AgendaContext } from "@/context/AgendaContext";
 
 function App() {
   
@@ -9,10 +9,8 @@ function App() {
 
   return (
     <>
-      <h1 className="px-4 py-2">
-        Test d'Agenda
-      </h1>
       <AgendaContext.Provider value={{ AgendaDate, setAgendaDate }}>
+      <h1 className="px-4 py-2">{AgendaDate.getFullYear()}</h1>
         <NavigationDay/>
         <Day />
       </AgendaContext.Provider>

@@ -1,0 +1,24 @@
+
+/* Entry color */
+$border-text-color: hsl(90, 2%, 25%);
+
+$entry-colors: (
+  "Inactive" : hsl(80, 100%, 99%),
+  "UnSaved" : hsl(56, 100%, 93%),
+  "Hover" : hsl(56, 100%, 93%),
+  "Focus" : hsl(56, 100%, 75%),
+  "Border" : hsl(90, 2%, 25%),
+  "Text" : hsl(90, 2%, 25%),
+  "Border--Focus" : hsl(300, 7%, 6%),
+  "Text--Focus" : hsl(300, 7%, 6%)
+  );
+
+$orange: (
+  "Primary": hsl(19deg, 100%, 50%),
+  "Lighter": hsl(19deg, 100%, 90%)
+);
+
+$blue: (
+  "Primary": rgb(54, 84, 253),
+  "Lighter": hsl(54deg, 100%, 90%),
+);

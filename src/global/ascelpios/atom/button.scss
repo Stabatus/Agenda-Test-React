@@ -1,0 +1,17 @@
+@use '../variable/miscellaneous.scss' as misc;
+@use '../variable/color.scss' as color;
+
+button{
+  all:unset;
+}
+
+.third-btn{
+  border: map-get($map: misc.$border, $key: "Standard") map-get($map: color.$orange, $key: "Primary");
+  color: map-get($map: color.$orange, $key: "Primary");
+  font-size: 1.2rem;
+  border-radius: 100vmax;
+  padding-top: 0.4rem;
+  padding-left: 1.2rem;
+  padding-bottom: 0.4rem;
+  padding-right: 1.2rem;
+}

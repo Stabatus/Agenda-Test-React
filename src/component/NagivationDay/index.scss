@@ -1,0 +1,54 @@
+@use '../../global/ascelpios/variable/color.scss' as color;
+@use '../../global/ascelpios/variable/miscellaneous.scss' as misc;
+@use '../../global/ascelpios/variable/transitions.scss' as trans;
+
+
+.day{
+  cursor: pointer;
+  text-align: center;
+
+  >*{
+    transition: map-get($map: trans.$transitions, $key: "Standard");
+  }
+
+  >:first-child,
+  >:nth-child(3){
+    font-size: 1.2rem;
+  }
+
+  $sizeDate:3.5rem;
+
+  > span:nth-child(2){
+    display: block;
+    width: $sizeDate;
+    aspect-ratio: 1/1;
+    line-height: $sizeDate;
+    font-size: 1.6rem;
+    margin-top:0.4rem;
+    margin-bottom:0.4rem;
+  }
+
+  >span:first-child::first-letter,
+  >span:nth-child(3)::first-letter{
+    text-transform: uppercase;
+  }
+
+  &--today>span:nth-child(2){
+    $todaySize : calc($sizeDate - 2px);
+    border-radius: 100vmax;
+    border: map-get($map: misc.$border, $key: "Standard") map-get($map: color.$orange, $key: "Primary");
+    color: map-get($map: color.$orange, $key: "Primary");
+    height: $todaySize;
+    line-height: $todaySize;
+    font-weight: 900;
+  }
+
+  &--selected>span:nth-child(2){
+    border-radius: 100vmax;
+    border:none;
+    background-color: map-get($map: color.$blue, $key: "Primary");
+    color:map-get($map: color.$blue, $key: "Lighter");
+    font-weight: 700;
+  }
+  
+}

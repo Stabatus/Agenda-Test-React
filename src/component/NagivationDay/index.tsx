@@ -1,20 +1,20 @@
 import React, { useContext } from "react";
-import "./index.css";
-import { NavigationDayProps } from './interface';
-import { DAY_OF_WEEK, setupZero, getDateFromStartingDate, TODAY } from "../../service";
-import { AgendaContext } from "../../context/AgendaContext";
+import { setupZero, getDateFromStartingDate, TODAY } from "@/service";
+import { AgendaContext } from "@/context/AgendaContext";
+import "./index.scss";
 
 
 export const NavigationDay = () => {
 
   const { AgendaDate : date, setAgendaDate } = useContext(AgendaContext);
 
+  /** Génération des inputs de la navigation de date */
   const DayTemplate = () => {
     const arrayDay:JSX.Element[] = [];
     const dayIndex = date.getDay() === 0?  6 : date.getDay() - 1;
     
+    /** Boucle qui représente les jours de la semaine */
     for(let i = 0; i < 7; i++){
-
       const selectedDate = (i === dayIndex) ? 'day--selected' : '';
       const delta = i - dayIndex;
       const dayForNavigation = getDateFromStartingDate(date, delta);
