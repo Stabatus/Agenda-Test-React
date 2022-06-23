@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
 export const AgendaContext = createContext({
-  date: new Date(),
+  AgendaDate: new Date(),
   setAgendaDate : (date:Date) => {}
 });

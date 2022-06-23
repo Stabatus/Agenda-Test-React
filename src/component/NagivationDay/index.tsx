@@ -7,27 +7,32 @@ import { AgendaContext } from "../../context/AgendaContext";
 
 export const NavigationDay = () => {
 
-  const { date, setAgendaDate } = useContext(AgendaContext);
+  const { AgendaDate : date, setAgendaDate } = useContext(AgendaContext);
 
   const DayTemplate = () => {
     const arrayDay:JSX.Element[] = [];
-    const todayIndex = date.getDay() - 1;
+    const dayIndex = date.getDay() === 0?  6 : date.getDay() - 1;
     
     for(let i = 0; i < 7; i++){
 
-      const isToday = i === TODAY.getDay() - 1 ? 'day--today' : ''; 
-      const delta = i - todayIndex;
+      const selectedDate = (i === dayIndex) ? 'day--selected' : '';
+      const delta = i - dayIndex;
       const dayForNavigation = getDateFromStartingDate(date, delta);
       const dFNDate = dayForNavigation.getDate();
       const month = dayForNavigation.toLocaleString('default', { month: 'long' });
+      const weekday = dayForNavigation.toLocaleString('default', { weekday: 'long' });
+      const todayIndex = TODAY.getDay() === 0 ? 6 : TODAY.getDay() - 1;
+      const isToday = (i === todayIndex) && (TODAY.toDateString() === dayForNavigation.toDateString()) ? 
+        'day--today' : 
+        ''; 
 
       const divDay:JSX.Element = (
         <div 
           key={i}
-          className={`day ${isToday} d-flex flex-column align-items-center justify-content-center`}
+          className={`day ${isToday} ${selectedDate} d-flex flex-column align-items-center justify-content-center`}
           onClick={() => setAgendaDate(dayForNavigation)}
         >
-          <span>{DAY_OF_WEEK[i].substring(0, 3)}</span>
+          <span>{weekday.substring(0, 3)}</span>
           <span>{setupZero(dFNDate)}</span>
           <span>{month}</span>
         </div>

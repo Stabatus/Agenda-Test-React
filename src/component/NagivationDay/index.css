@@ -17,6 +17,7 @@
   margin: 0.25rem 0;
 }
 
+.day>span:first-child::first-letter,
 .day>span:nth-child(3)::first-letter{
   text-transform: uppercase;
 }
@@ -25,6 +26,14 @@
   border-radius: 100vmax;
   background-color: hsl(19,100%,50%);
   color:hsl(19,100%,90%);
+  font-weight: 700;
+}
+
+
+.day--selected>span:nth-child(2){
+  border-radius: 100vmax;
+  background-color: rgb(54, 84, 253);
+  color:hsl(54,100%,90%);
   font-weight: 700;
 }
 
