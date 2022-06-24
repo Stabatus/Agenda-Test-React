@@ -4,11 +4,12 @@
 
 .hour{
   border-bottom: var(--border-hours);
+
+  &:first-child{
+    border-top: var(--border-hours);
+  }
 }
 
-.hour:first-child{
-  border-top: var(--border-hours);
-}
 
 .periode{
   display: grid;

@@ -14,20 +14,22 @@
   margin :0;
   cursor: pointer;
   position: relative;
+
+  &:before{
+    content: '';
+    display: block;
+    height: var(--size-round);
+    aspect-ratio: 1/1;
+    border-radius: 100vmax;
+    background-color: hsl(0, 15%, 20%);
+    position: absolute;
+    top: var(--padding);
+    left: var(--padding);
+    transition: 0.3s all ease-out;
+  }
+  
 }
 
-.switch:before{
-  content: '';
-  display: block;
-  height: var(--size-round);
-  aspect-ratio: 1/1;
-  border-radius: 100vmax;
-  background-color: hsl(0, 15%, 20%);
-  position: absolute;
-  top: var(--padding);
-  left: var(--padding);
-  transition: 0.3s all ease-out;
-}
 
 input:checked + .switch{
   background-color: hsl(19, 100%, 50%);

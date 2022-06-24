@@ -1,6 +1,6 @@
 import React from "react";
-import './index.css';
 import { PropsSwitch } from "./interface";
+import './index.scss';
 
 export const Switch = ({ id }:PropsSwitch) => (
   <>
