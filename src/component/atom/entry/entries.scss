@@ -52,7 +52,7 @@
     cursor:pointer;
   }
 
-  $size-calendar : 25rem;
+  $size-calendar : 26rem;
 
   .calendar{
     position:absolute;
@@ -75,16 +75,34 @@
       opacity: 1;
     }
 
+    .calendar__month::first-letter{
+      text-transform: capitalize;
+    }
+
+    .calendar__header{
+      margin-top:0.4rem;
+      margin-bottom:0.4rem;
+      font-size:1rem;
+      display: grid;
+      grid-template-columns: repeat(7,1fr);
+    }
+
     .calendar__body{
-      height: 100%;
+      height: 19rem;
       width: 100%;
       display: grid;
       grid-template-columns: repeat(7,1fr);
       grid-auto-rows: 1fr;
+      place-items: center start;
 
       span{
         font-size:1rem;
       }
+
+      .other-month{
+        opacity: 0.6;
+      }
+
     }
 
   }

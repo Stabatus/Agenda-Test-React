@@ -1,8 +1,12 @@
-import React, {useState} from "react";
-import { getDateFromStartingDate } from '@/service';
+import React, {useContext, useState} from "react";
+import { getDateFromStartingDate, numberOfWeek } from '@/service';
+import { CalendarContext } from "./context";
 
-export const Calendar = ({ date }) => {
-  
+
+
+export const Calendar = () => {
+  let { date, setDate } = useContext(CalendarContext);
+
   let [stateOpen, setStateOpen] = useState({
     open:false
   });
@@ -10,6 +14,7 @@ export const Calendar = ({ date }) => {
   let [stateDate, setStateDate] = useState({
     date: new Date(date)
   });
+
 
   const toggleCalendar = () => setStateOpen(
     prevState => stateOpen = {
@@ -19,11 +24,27 @@ export const Calendar = ({ date }) => {
 
   const openCalendar = `calendar--open`;
 
-  const numberOfWeek = (dateObj:Date) => {
-    const lastDay = new Date(dateObj.getFullYear(), dateObj.getMonth(), 0);
-    console.log(lastDay);
-    return Math.ceil((lastDay.getDate() + 1 - lastDay.getDay()) / 7);
+  const prevMonth = () => {
+    let newMonth : Date = new Date();
+    setStateDate( prevState => {
+      newMonth = new Date(prevState.date.getFullYear(), prevState.date.getMonth() - 1, 1);
+      return {date : newMonth};
+    });
+    setDate(newMonth);
+  };
 
+  const nextMonth = () => {
+    let newMonth : Date = new Date();
+    setStateDate( prevState => {
+      newMonth = new Date(prevState.date.getFullYear(), prevState.date.getMonth() + 1, 1);
+      return {date : newMonth}
+    });
+    setDate(newMonth);
+  }
+
+  const changeDate = (dateCalendar:Date) => {
+    setStateDate( () => stateDate={date : dateCalendar});
+    setDate(dateCalendar);
   }
 
   const setupCalendar = () => {
@@ -31,42 +52,56 @@ export const Calendar = ({ date }) => {
     const dateObj = stateDate.date;
     const calendarArray:JSX.Element[] = [];
     const startMonth = new Date(dateObj.getFullYear(), dateObj.getMonth(), 1);
-    console.log(numberOfWeek(startMonth));
-    
     for(let i = 0, max = numberOfWeek(startMonth) * 7; i < max; i++){
-        console.log(i, max, numberOfWeek(startMonth));
-        const dayIndex = dateObj.getDay() === 0?  6 : dateObj.getDay() - 1;
+        const dayIndex = startMonth.getDay() === 0?  6 : startMonth.getDay() - 1;
         const delta = i - dayIndex;
         const dateCalendar = getDateFromStartingDate(startMonth, delta);
-        console.log(dateCalendar);
+
+        const dayClassName = startMonth.getMonth() === dateCalendar.getMonth() ? 'actual-month' : 'other-month';
+
         calendarArray.push((
           <>
-            <span>{dateCalendar.getDate()+ '/' + (dateCalendar.getMonth() +1)}</span>
+            <span 
+              key={`day-${i.toString()}`} 
+              className={dayClassName}
+              onClick={() => changeDate(dateCalendar)}
+            >
+              {dateCalendar.getDate()}
+            </span>
           </>
         ))
     }
 
     return (
-    <>
+    <div>
       <div className="d-flex justify-content-between align-items-center">
-        <strong>{dateObj.toLocaleDateString('default', {month:'long'}) + ' ' + dateObj.getFullYear()}</strong>
+        <strong className="calendar__month">{dateObj.toLocaleDateString('default', {month:'long'}) + ' ' + dateObj.getFullYear()}</strong>
         <div>
-          <button className="mr-3">-</button>
-          <button>+</button>
+          <button className="mr-3" onClick={prevMonth}>-</button>
+          <button onClick={nextMonth}>+</button>
         </div>
+      </div>
+      <div className="calendar__header">
+        <span>Lun.</span>
+        <span>Mar.</span>
+        <span>Mer.</span>
+        <span>Jeu.</span>
+        <span>Ven.</span>
+        <span>Sam.</span>
+        <span>Dim.</span>
       </div>
       <div className="calendar__body">
         {calendarArray}
       </div>
-    </>
+    </div>
   )}
 
   return (
-    <>
-      <div className="input__calendar" onClick={toggleCalendar}></div>
+    <div>
+      <div key={`calendar-input`} className="input__calendar" onClick={toggleCalendar}></div>
       <div key={'calendar'} className={`calendar ${stateOpen.open && openCalendar}`}>
         {setupCalendar()}
       </div>
-    </>
+    </div>
   )
 }

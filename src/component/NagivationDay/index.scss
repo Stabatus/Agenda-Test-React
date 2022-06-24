@@ -28,8 +28,8 @@
     margin-bottom:0.4rem;
   }
 
-  >span:first-child::first-letter,
-  >span:nth-child(3)::first-letter{
+  > span:first-child::first-letter,
+  > span:nth-child(3)::first-letter{
     text-transform: uppercase;
   }
 

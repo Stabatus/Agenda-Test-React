@@ -15,7 +15,11 @@ export const Day = () => {
         
         <Entries.EntryDate 
           value={new DateTransform(date).YMD('-')}
-          onChange={(e) => setAgendaDate(new Date(e.target.value))} 
+          onChange={(e: string | React.ChangeEvent<HTMLInputElement> ) => {
+            const dateString:string = typeof e !== 'string' ? e.target.value : e;
+            const updateDate = new Date(dateString);
+            setAgendaDate(updateDate);
+          }} 
         />
 
         <button

@@ -1,24 +1,30 @@
-import React, {Component} from "react";
+import { DateTransform } from "@/service";
+import React, { useState } from "react";
 import { EntryDateProps } from "../interfaces";
 import { Calendar } from "./Calendar";
+import { CalendarContext } from './context'
 
-export class EntryDate extends Component<EntryDateProps>{
+export const EntryDate = (props:EntryDateProps) =>{
 
-  constructor(props:EntryDateProps){
-    super(props);
+  const [date, setDate] = useState(new Date(props.value));
+  
+  const updateEntry = (newDate:Date) => {
+      setDate(newDate);
+      console.log(new DateTransform(newDate).YMD('-'));
+      if(props.onChange != null) props.onChange(new DateTransform(newDate).YMD('-'));
   }
 
-  render = () => (
+  return (
     <div className="container__entry--date">
-      <>
+      <CalendarContext.Provider value={{date, setDate}}>
         <input 
           className="entry"
           type={"date"}
-          {...this.props}
+          value={new DateTransform(date).YMD('-')}
+          onChange={() => updateEntry(date)}
         />
-        <Calendar date={this.props.value}/>
-      </>
+        <Calendar />
+      </CalendarContext.Provider>
     </div>
   )
-
 }

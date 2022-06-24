@@ -132,3 +132,8 @@ export class DateTransform {
     }
 
 }
+
+export const numberOfWeek = (dateObj:Date) => {
+    const lastDay = new Date(dateObj.getFullYear(), dateObj.getMonth()+1, 0);
+    return Math.ceil((lastDay.getDate() - lastDay.getDay()) / 7) + 1;
+}
