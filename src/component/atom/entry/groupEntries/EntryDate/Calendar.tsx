@@ -20,7 +20,7 @@ export const Calendar = ({ date }) => {
   const openCalendar = `calendar--open`;
 
   const numberOfWeek = (dateObj:Date) => {
-    const lastDay = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0);
+    const lastDay = new Date(dateObj.getFullYear(), dateObj.getMonth(), 0);
     console.log(lastDay);
     return Math.ceil((lastDay.getDate() + 1 - lastDay.getDay()) / 7);
 
@@ -30,18 +30,18 @@ export const Calendar = ({ date }) => {
     
     const dateObj = stateDate.date;
     const calendarArray:JSX.Element[] = [];
-    const startMonth = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 1);
+    const startMonth = new Date(dateObj.getFullYear(), dateObj.getMonth(), 1);
     console.log(numberOfWeek(startMonth));
     
-    for(let i = 0, max = numberOfWeek(startMonth) * 7; i <= max; i++){
-      console.log(max);
+    for(let i = 0, max = numberOfWeek(startMonth) * 7; i < max; i++){
+        console.log(i, max, numberOfWeek(startMonth));
         const dayIndex = dateObj.getDay() === 0?  6 : dateObj.getDay() - 1;
         const delta = i - dayIndex;
         const dateCalendar = getDateFromStartingDate(startMonth, delta);
         console.log(dateCalendar);
         calendarArray.push((
           <>
-            <span>{dateCalendar.toLocaleDateString('default', {weekday:'long'})  +'-'+dateCalendar.getDate()+ '/' + dateCalendar.getMonth()+"/"+dateCalendar.getFullYear()}</span>
+            <span>{dateCalendar.getDate()+ '/' + (dateCalendar.getMonth() +1)}</span>
           </>
         ))
     }
