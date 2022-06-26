@@ -1,11 +1,11 @@
-import { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes } from "react";
 
 export interface EntryProps extends InputHTMLAttributes<HTMLInputElement>{}
 
 export interface EntryDateProps extends InputHTMLAttributes<HTMLInputElement>{
-  value : string;
 }
 
 export interface CalendarProps{
   date: Date;
+  setDate : React.Dispatch<React.SetStateAction<Date>>
 }

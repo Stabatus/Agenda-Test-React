@@ -1,11 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import { getDateFromStartingDate, numberOfWeek } from '@/service';
-import { CalendarContext } from "./context";
+import { CalendarProps } from '../interfaces.js';
 
 
 
-export const Calendar = () => {
-  let { date, setDate } = useContext(CalendarContext);
+export const Calendar = ({date, setDate}:CalendarProps) => {
 
   let [stateOpen, setStateOpen] = useState({
     open:false
@@ -48,7 +47,6 @@ export const Calendar = () => {
   }
 
   const setupCalendar = () => {
-    
     const dateObj = stateDate.date;
     const calendarArray:JSX.Element[] = [];
     const startMonth = new Date(dateObj.getFullYear(), dateObj.getMonth(), 1);

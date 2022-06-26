@@ -99,6 +99,28 @@
         font-size:1rem;
       }
 
+      .month_day{
+        cursor: pointer;
+        height: 100%;
+        width:100%;
+        vertical-align: middle;
+        display: grid;
+        place-items: center start;
+        padding:0.4rem;
+        border-radius:0rem;
+        transition:map-get(trans.$transitions, "Standard");
+
+        &::before{
+          content:attr(data-day);
+        }
+      }
+      
+
+      .month_day:hover{
+        background-color: map-get(color.$orange, "Lighter" );
+        border-radius:0.8rem;
+      }
+
       .other-month{
         opacity: 0.6;
       }

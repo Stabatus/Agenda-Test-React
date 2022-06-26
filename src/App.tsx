@@ -6,7 +6,6 @@ import { AgendaContext } from "@/context/AgendaContext";
 function App() {
   
   const [AgendaDate, setAgendaDate] = useState(new Date());
-
   return (
     <>
       <AgendaContext.Provider value={{ AgendaDate, setAgendaDate }}>
