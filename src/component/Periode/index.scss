@@ -4,7 +4,8 @@
 
 .hour{
   border-bottom: var(--border-hours);
-
+  z-index: -1;
+  
   &:first-child{
     border-top: var(--border-hours);
   }

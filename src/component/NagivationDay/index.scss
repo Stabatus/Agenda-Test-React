@@ -3,6 +3,27 @@
 @use '../../global/ascelpios/variable/transitions.scss' as trans;
 
 
+.navigation__day{
+  overflow-x: scroll;
+  scroll-margin-inline-start:-100vw;
+  scroll-snap-type: y proximity;
+
+  $number-column : 21;
+  $navigation-size:300vw;
+  $column-size : calc($navigation-size / $number-column);
+  & > div{
+    width:$navigation-size;
+    display: grid;
+    grid-template-columns: repeat($number-column, $column-size);
+    gap:0;
+
+    & > div{
+      padding: 0 1.2rem;
+    }
+  }
+}
+
+
 .day{
   cursor: pointer;
   text-align: center;

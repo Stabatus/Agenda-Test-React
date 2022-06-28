@@ -9,13 +9,19 @@ enum TYPE_CALENDAR {
   MONTH = 'mois'
 }
 
-enum CalendarType {
-  'day',
-  'year',
-  'mois'
-}
-
-const MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'] as const;
+const MONTHS = [
+  'Janvier',
+  'Février',
+  'Mars',
+  'Avril',
+  'Mai',
+  'Juin',
+  'Juillet',
+  'Août',
+  'Septembre',
+  'Octobre',
+  'Novembre',
+  'Décembre'] as const;
 
 export const Calendar = ({changeEvent}:changeEventProps) => {
 
@@ -34,7 +40,7 @@ export const Calendar = ({changeEvent}:changeEventProps) => {
         return {
         open : !prevState.open,
         date: prevState.open ? prevState.date : new Date(stateCalendar.date),
-        type: prevState.type 
+        type: !prevState.open ? TYPE_CALENDAR.DAY : prevState.type
       }
     }
   );

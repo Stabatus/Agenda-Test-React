@@ -5,7 +5,6 @@ import { AgendaContext } from "@/context/AgendaContext";
 import { Entries } from "@/component/atom/entry";
 import './index.scss';
 
-
 export const Day = () => {
   const { AgendaDate : date, setAgendaDate } = useContext(AgendaContext);
 
@@ -17,13 +16,13 @@ export const Day = () => {
   return (
     <div>
       <div className="px-4 d-flex justify-content-between align-items-center">
+
         <Entries.EntryDate
           key={new DateTransform(date).YMD('-')}
           defaultValue={new DateTransform(date).YMD('-')}
           onChange={changeDate} 
           changeEvent={changeDate}
         />
-
 
         <button
           className="third-btn"
