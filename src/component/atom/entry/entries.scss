@@ -43,13 +43,16 @@
   .input__calendar{
     height:1.6rem;
     aspect-ratio: 1/1;
-    background-color: red;
     border-radius: 0.4rem;
     position: absolute;
     top:50%;
     right: 1.2rem;
     transform: translate(0, -50%);
     cursor:pointer;
+    background-image: url('/src/global/ascelpios/icon/date.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   $size-calendar : 26rem;
@@ -75,8 +78,49 @@
       opacity: 1;
     }
 
-    .calendar__month::first-letter{
-      text-transform: capitalize;
+    button.action__month{
+      height:1.6rem;
+      aspect-ratio: 1/1;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size:cover;
+    }
+
+    button.action__month--before{
+      background-image: url('/src/global/ascelpios/icon/before.svg');
+
+    }
+
+    button.action__month--next{
+      background-image: url('/src/global/ascelpios/icon/next.svg');
+
+    }
+
+    .calendar__month{
+      position:relative;
+      cursor: pointer;
+
+      &::after{
+        content:'';
+        display: block;
+        position: absolute;
+        bottom:0;
+        left:0;
+        height:0.2rem;
+        border-radius: 100vmax;
+        width:75%;
+        background-color: map-get($map: color.$orange, $key: "Light");
+        transition : map-get($map: trans.$transitions, $key: "Standard")
+      }
+
+      &:hover::after{
+        width:100%;
+        background-color: map-get($map: color.$orange, $key: "Primary");
+      }
+
+      &::first-letter{
+        text-transform: capitalize;
+      }
     }
 
     .calendar__header{
@@ -95,30 +139,46 @@
       grid-auto-rows: 1fr;
       place-items: center start;
 
+      &--month{
+        grid-template-columns: repeat(3,1fr);
+      }
+
+      &--year{
+        grid-template-columns: repeat(3,1fr);
+      }
+
       span{
         font-size:1rem;
       }
 
-      .month_day{
+      .calendar__input{
         cursor: pointer;
+        box-sizing: border-box;
+        border-radius:0.8rem;
         height: 100%;
         width:100%;
         vertical-align: middle;
         display: grid;
         place-items: center start;
         padding:0.4rem;
-        border-radius:0rem;
+        border-radius:0.8rem;
         transition:map-get(trans.$transitions, "Standard");
 
         &::before{
           content:attr(data-day);
         }
-      }
-      
 
-      .month_day:hover{
-        background-color: map-get(color.$orange, "Lighter" );
-        border-radius:0.8rem;
+        &:hover{
+          background-color: map-get(color.$orange, "Lighter" );
+        }
+      }
+
+      .day--today{
+        border:1px solid map-get($map: color.$orange, $key: "Primary");
+      }
+
+      .day--selected{
+        border:1px solid map-get($map: color.$blue, $key: "Primary");
       }
 
       .other-month{

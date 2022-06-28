@@ -1,6 +1,10 @@
 import React, {createContext} from "react";
+import { StateCalendarProps } from '../interfaces';
 
 export const CalendarContext = createContext({
-  date: new Date(),
-  setDate: (_date:Date) => {/** Vide pour remplacer par le hook */}
-})
+  stateCalendar: {
+    date : '',
+    open : false
+  },
+  setStateCalendar: (_date:StateCalendarProps) => {/** Vide pour être remplacé par le hook */}
+});
