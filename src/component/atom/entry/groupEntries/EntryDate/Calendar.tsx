@@ -42,11 +42,13 @@ export const Calendar = ({changeEvent}:changeEventProps) => {
   const changeAction = (index : number) => {
     setStateC( prevState => {
       const objDate = prevState.date;
-
       let newDate = new Date(objDate.getFullYear(), objDate.getMonth() + index, 1);
-      if(stateC.type === TYPE_CALENDAR.MONTH) newDate = new Date(objDate.getFullYear() + index, objDate.getMonth(), 1);
-      else newDate = new Date(objDate.getFullYear()+ (index*10), objDate.getMonth() + index, 1);
-
+      
+      if(stateC.type === TYPE_CALENDAR.MONTH) 
+        newDate = new Date(objDate.getFullYear() + index, objDate.getMonth(), 1);
+      if(stateC.type === TYPE_CALENDAR.YEAR) 
+        newDate = new Date(objDate.getFullYear()+ (index*10), objDate.getMonth() + index, 1);
+      
       return {
         date : newDate, 
         open : prevState.open,
