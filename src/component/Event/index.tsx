@@ -1,12 +1,16 @@
  import React from "react";
+ import './index.scss';
 
- export const Event = () => {
 
-  
+interface EventProps{
+  hours : number;
+}
+
+ export const Event = ({hours}:EventProps) => {
 
   return (
-    <div>
-
+    <div className={'event'} data-hours={hours} style={{gridArea: `${hours+1}/1`}}>
+      {"cc"}
     </div>
   )
  }

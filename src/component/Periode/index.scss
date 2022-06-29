@@ -5,6 +5,8 @@
 .hour{
   border-bottom: var(--border-hours);
   z-index: -1;
+  display: grid;
+  grid-template-columns: 4.8rem auto;
   
   &:first-child{
     border-top: var(--border-hours);
@@ -15,4 +17,15 @@
 .periode{
   display: grid;
   grid-auto-rows: 1fr;
+  position: relative;
+
+  .periode__interactive{
+    position: absolute;
+    top:0;
+    right:0;
+    width:calc(100% - 4.8rem - 1.5rem);
+    height:100%;
+    display: grid;
+    grid-template-rows: repeat(24, 1fr);
+  }
 }

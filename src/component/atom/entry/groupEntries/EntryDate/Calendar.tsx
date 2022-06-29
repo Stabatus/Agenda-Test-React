@@ -137,7 +137,6 @@ export const Calendar = ({changeEvent}:changeEventProps) => {
 
   const changeMonth = (indexMonth: number) => {
     setStateC( prevState => {
-      console.log(indexMonth, new Date(prevState.date.getFullYear(), indexMonth, 1));
       return  {
         date : new Date(prevState.date.getFullYear(), indexMonth, 1), 
         open : prevState.open,

@@ -52,8 +52,13 @@ export const NavigationDay = () => {
   }
 
   useEffect(() => {
-    if(date && selectedDateRef != undefined && selectedDateRef.current) 
+    if(selectedDateRef != undefined && selectedDateRef != null  && selectedDateRef.current){
       selectedDateRef.current.scrollIntoView({block: 'nearest', inline: 'start' });
+      window.addEventListener('resize', () => {
+        if(selectedDateRef != undefined && selectedDateRef != null  && selectedDateRef.current) 
+          selectedDateRef.current.scrollIntoView({block: 'nearest', inline: 'start' })
+      });
+    } 
   }, [date]);
   
 
