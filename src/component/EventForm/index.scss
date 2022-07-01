@@ -1,0 +1,16 @@
+@use '../../global/ascelpios/variable/miscellaneous.scss' as misc;
+
+.form--event{
+  position: fixed;
+  bottom:0;
+  left:50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2.4rem);
+  padding-top:2.4rem;
+  padding-right:2.4rem;
+  padding-bottom:2.4rem;
+  padding-left:2.4rem;
+  background-color: white;
+  height: fit-content;
+  box-shadow: map-get($map: misc.$box-shadow, $key: "Primary");
+}

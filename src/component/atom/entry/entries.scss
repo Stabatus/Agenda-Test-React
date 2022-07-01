@@ -71,6 +71,7 @@
     padding: 1.2rem;
     border-radius: 0.8rem;
     box-shadow: map-get(misc.$box-shadow, "Third");
+    z-index: 9999;
   
     &--open{
       bottom:calc(( -1 * $size-calendar) - 0.4rem);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Day } from '@/component/Day';
 import { NavigationDay } from '@/component/NagivationDay';
 import { AgendaContext } from "@/context/AgendaContext";
+import { EventForm } from "./component/EventForm";
 
 function App() {
   
@@ -9,9 +10,10 @@ function App() {
   return (
     <>
       <AgendaContext.Provider value={{ AgendaDate, setAgendaDate }}>
-      <h1 className="px-4 py-2">{AgendaDate.getFullYear()}</h1>
+        <h1 className="px-4 py-2">{AgendaDate.getFullYear()}</h1>
         <NavigationDay/>
         <Day />
+        <EventForm />
       </AgendaContext.Provider>
     </>
   )

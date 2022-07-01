@@ -3,7 +3,7 @@ import React, { InputHTMLAttributes } from "react";
 export interface EntryProps extends InputHTMLAttributes<HTMLInputElement>{}
 
 export interface EntryDateProps extends InputHTMLAttributes<HTMLInputElement>{
-  changeEvent : (arg:any) => void | undefined
+  changeEvent? : (arg:any) => void | undefined
 }
 
 export interface StateCalendarProps {
@@ -13,5 +13,5 @@ export interface StateCalendarProps {
 
 
 export type changeEventProps = {
-  changeEvent: (arg:string) => void | React.ChangeEventHandler<HTMLInputElement> | undefined
+  changeEvent?: (arg:string) => void | React.ChangeEventHandler<HTMLInputElement> | undefined
 };

@@ -9,7 +9,13 @@ interface EventProps{
  export const Event = ({hours}:EventProps) => {
 
   return (
-    <div className={'event'} data-hours={hours} style={{gridArea: `${hours+1}/1`}}>
+    <div 
+      className={'event'} 
+      data-hours={hours} 
+      style={{
+        gridArea: `${hours+1}/1`
+      }}
+    >
       {"cc"}
     </div>
   )

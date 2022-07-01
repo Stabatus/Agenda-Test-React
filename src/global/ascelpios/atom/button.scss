@@ -5,6 +5,27 @@ button{
   all:unset;
 }
 
+.primary-btn{
+  background-color: map-get($map: color.$orange, $key: "Primary");
+  color: map-get($map: color.$orange, $key: "Lighter");
+  font-weight: 700;
+  padding-top:0.8rem;
+  padding-left:3.6rem;
+  padding-bottom: 0.8rem;
+  padding-right:3.6rem;
+  border-radius: 0.8rem;
+  box-shadow: map-get($map: misc.$box-shadow, $key: "Secondary");
+  
+  &--fluid{
+    @extend .primary-btn;
+    text-align: center;
+    width: -webkit-fill-available;
+    width: -moz-available;
+  }
+
+}
+
+
 .third-btn{
   border: map-get($map: misc.$border, $key: "Standard") map-get($map: color.$orange, $key: "Primary");
   color: map-get($map: color.$orange, $key: "Primary");
