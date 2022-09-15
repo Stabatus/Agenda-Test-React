@@ -4,9 +4,10 @@
 
 interface EventProps{
   hours : number;
+  content : string;
 }
 
- export const Event = ({hours}:EventProps) => {
+ export const Event = ({hours, content}:EventProps) => {
 
   return (
     <div 
@@ -16,7 +17,7 @@ interface EventProps{
         gridArea: `${hours+1}/1`
       }}
     >
-      {"cc"}
+      {content}
     </div>
   )
  }

@@ -64,11 +64,13 @@ export const Calendar = ({changeEvent}:changeEventProps) => {
   }
   
   const changeDate = (dateCalendar:Date) => {
-    setStateC( prevState => stateC = {
-      date : dateCalendar, 
-      open : prevState.open,
+    setStateC( 
+      prevState => stateC = {
+        date : dateCalendar, 
+        open : prevState.open,
         type: prevState.type 
-    });
+      } 
+    );
     setStateCalendar({
       date : new DateTransform(stateC.date).YMD('-'),
       open : stateC.open
@@ -227,8 +229,7 @@ export const Calendar = ({changeEvent}:changeEventProps) => {
         return setupYearCalendar();
       }
       case TYPE_CALENDAR.DAY:
-      default:
-      {
+      default:{
         return setupDayCalendar();
       }
     }
