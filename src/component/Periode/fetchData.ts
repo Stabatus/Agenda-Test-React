@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
+import { EventContext } from ".";
 
 const NEW_LINE = /\r\n|\n|\r/;
 
@@ -131,6 +132,8 @@ class IcsToJson {
 interface ControllerInterface{
   AgendaDate: Date;
   setEvents: React.Dispatch<React.SetStateAction<any[]>>;
+  allEvents: CurrentObjInterface[];
+  setAllEvents: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 const mapWeek = ['MO','TU','WE','TH','FR','SA','SU'];
@@ -148,7 +151,7 @@ const createFile = (array:CurrentObjInterface[]):void => {
 
 const createTemplate = ():CurrentObjInterface[] => {
   const array = [];
-  const MAX_EVENT = 50000;
+  const MAX_EVENT = 500;
 
   const createRandomFrequency = () => {
       const isRecurent = Math.floor((Math.random() * 3)) % 3 === 0;
@@ -214,10 +217,13 @@ export class Controller {
   private AgendaDate: Date;
   private setEvents: React.Dispatch<React.SetStateAction<any[]>>;
   private data: CurrentObjInterface[] = [];
+  private setAllEvents: React.Dispatch<React.SetStateAction<any[]>>;
 
-  constructor({AgendaDate, setEvents}:ControllerInterface){
+  constructor({AgendaDate, setEvents, allEvents, setAllEvents}:ControllerInterface){
     this.AgendaDate = AgendaDate;
     this.setEvents = setEvents;
+    this.setAllEvents = setAllEvents;
+    this.data = [...allEvents];
   }
 
   private isInInterval = ({startDate, interval}: {startDate:Date, interval : number}) => Math.floor(this.AgendaDate.getTime() - startDate.getTime()/ (1000 * 60 * 60 * 24)) % interval == 0;
@@ -261,13 +267,16 @@ export class Controller {
   private isToday = (someDate: Date) => someDate.getDate() == this.AgendaDate.getDate() && someDate.getMonth() == this.AgendaDate.getMonth() && someDate.getFullYear() == this.AgendaDate.getFullYear();
   
   public fetchEvent = async ():Promise<void> => {
-    //const icsRes = await fetch('rubenletist@gmail.com.ics');
-    //const icsData = await icsRes.text();
-    //this.data = new IcsToJson(icsData).array;
-    const icsRes = await fetch('Events.json');
-    const icsData = await icsRes.json();
-    this.data = icsData;
-    console.log(this.data);
+
+    if(this.data.length === 0){
+      const icsRes = await fetch('Events.json');
+      const icsData = await icsRes.json();
+      this.data = icsData;
+      this.setAllEvents(() => {
+        return [...this.data];
+      })
+    }
+
     this.setEvents(() => {
       const todayDate = this.data.filter(
         event => {
