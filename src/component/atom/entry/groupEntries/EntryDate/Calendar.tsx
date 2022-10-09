@@ -23,6 +23,8 @@ const MONTHS = [
   'Novembre',
   'Décembre'] as const;
 
+const calendar = document.querySelector('.calendar') as HTMLDivElement;
+
 export const Calendar = ({changeEvent}:changeEventProps) => {
 
   const {stateCalendar, setStateCalendar} = useContext(CalendarContext);

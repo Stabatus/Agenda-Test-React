@@ -13,7 +13,6 @@ function App() {
         <h1 className="px-4 py-2">{AgendaDate.getFullYear()}</h1>
         <NavigationDay/>
         <Day />
-        <EventForm />
       </AgendaContext.Provider>
     </>
   )
